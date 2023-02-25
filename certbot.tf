@@ -21,7 +21,7 @@ resource "null_resource" "certbot_install" {
   provisioner "remote-exec" {
     inline = [
       "/tmp/wait-for-dns.sh '${digitalocean_droplet.nginx_server.ipv4_address}'",
-      "certbot --nginx -d bohra.co.uk -d www.bohra.co.uk --non-interactive --agree-tos -m ${var.cert_contact} --debug-challenges",
+      "certbot --nginx -d ${var.domain_name} -d www.${var.domain_name} --non-interactive --agree-tos -m ${var.cert_contact} --debug-challenges",
     ]
   }
 
